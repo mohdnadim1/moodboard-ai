@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: '**/package-lock.json'
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Lint Workspaces
+      run: npm run lint
+
+    - name: Build Frontend
+      run: npm run build --workspace=frontend
+
+    - name: Check Backend
+      run: |
+        cd backend
+        node server.js &
+        sleep 5
+        kill $!

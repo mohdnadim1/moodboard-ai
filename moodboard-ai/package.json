@@ -1,0 +1,35 @@
+{
+  "name": "moodboard-ai",
+  "version": "1.0.0",
+  "description": "A web app that generates personalized vibe packages based on your mood.",
+  "main": "index.js",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=frontend & npm run dev --workspace=backend",
+    "build": "npm run build --workspace=frontend && npm run build --workspace=backend",
+    "start": "npm start --workspace=frontend & npm start --workspace=backend",
+    "lint": "npm run lint --workspace=frontend && npm run lint --workspace=backend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/your-username/moodboard-ai.git"
+  },
+  "keywords": [
+    "ai",
+    "mood",
+    "playlist",
+    "react",
+    "nextjs",
+    "nodejs"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/your-username/moodboard-ai/issues"
+  },
+  "homepage": "https://github.com/your-username/moodboard-ai#readme"
+}
